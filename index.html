@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <div id="buscador">
+            <label for="raza">Raza</label>
+            <select v-model="razaElegida" name="raza" id="raza">
+                <option v-for="raza of this.objetoXML.breeds" :value="raza.name">{{ raza.name }}</option>
+            </select>
+            <button v-if="buttonDisabled" @click="eventoBoton()">Buscar perro</button>
+        </div>
+        
+        <div  id="perros">
+            <div v-cloak id="perro" v-for="perro in objetoPerros">
+                <h2>{{ perro.name }}</h2>
+                <img v-if="perro.photos.length > 0" :src="perro.photos[0].medium">
+                <img v-else src="https://via.placeholder.com/300">
+            </div>
+        </div>
+    </div>
+   
+</body>
+</html>
